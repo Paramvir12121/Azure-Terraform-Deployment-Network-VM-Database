@@ -23,6 +23,9 @@ resource "azurerm_public_ip" "LINUX-PIP" {
   allocation_method   = "Dynamic"
   tags                = var.std_tags
   domain_name_label   = "n01479079-dnlabel-${count.index + 1}"
+  depends_on = [
+    azurerm_network_interface.LINUX-NIC
+  ]
 }
 
 data "azurerm_public_ip" "linux_public_ip_data" {

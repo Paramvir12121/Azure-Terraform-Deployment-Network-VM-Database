@@ -17,9 +17,10 @@ resource "azurerm_lb" "LB" {
     public_ip_address_id = azurerm_public_ip.LB-PIP.id
   }
 
-  #   backend_address_pool {
-  #     name = "backend_pool"
-  #   }
+
+    # backend_address_pool {
+    #   name = "backend_pool"
+    # }
 
   #   probe {
   #     name             = "tcp"
