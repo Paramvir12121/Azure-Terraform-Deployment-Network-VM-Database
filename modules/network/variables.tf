@@ -1,3 +1,7 @@
+variable "std_tags" {
+  type = map(string)
+}
+
 variable "rg-location" {
   type = string
 }

@@ -4,6 +4,7 @@ resource "azurerm_virtual_network" "VNET" {
   location            = var.rg-location
   resource_group_name = var.rg-name
   address_space       = var.vnet-address-space
+  tags                = var.std_tags
 }
 
 #subnet 1
