@@ -111,7 +111,6 @@ resource "azurerm_virtual_machine_extension" "LINUX-EXTEND-NETWORKWATCHER" {
   settings             = <<NETWORKWATCHER
  {
     "type": "extensions",
-    "name": "Microsoft.Azure.NetworkWatcher",
     "properties": {
         "publisher": "Microsoft.Azure.NetworkWatcher",
         "type": "NetworkWatcherAgentLinux",
