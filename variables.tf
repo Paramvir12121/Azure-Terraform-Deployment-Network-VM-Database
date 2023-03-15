@@ -27,7 +27,11 @@ variable "sa" {
   default = "sa9079"
 }
 
-# variable ""{
-#     type = string
-#     default = ""
-# }
+variable "postgres_admin_username" {
+  type    = string
+  default = "databaseadmin"
+}
+variable "postgres_admin_password" {
+  type    = string
+  default = "database@dmin123"
+}

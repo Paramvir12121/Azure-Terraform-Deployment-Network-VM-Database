@@ -41,27 +41,12 @@ resource "azurerm_virtual_machine" "WINDOWS-VM" {
     computer_name  = var.name-password-attributes.vm-computer-name
     admin_username = var.name-password-attributes.vm-admin-username
     admin_password = var.name-password-attributes.vm-admin-password
-    # custom_data    = <<EOF
-    # #!/bin/bash
-    # az extension add --name network-watcher
-    # EOF
-    # extension {
-    #   name                 = "NetworkWatcherAgentLinux"
-    #   publisher            = "Microsoft.Azure.NetworkWatcher"
-    #   type                 = "NetworkWatcherAgentLinux"
-    #   type_handler_version = "1.4"
-    # }
   }
-  
-    os_profile_windows_config {
-      provision_vm_agent = false
-      # disable_password_authentication = true
-      # ssh_keys {
-      #   key_data = file(var.admin_ssh_key.vm-ssh-public-key)
-      #   path     = "/home/Paramvir-N01479079/.ssh/authorized_keys"
-      # }
-    }
-  
+
+  os_profile_windows_config {
+    provision_vm_agent = false
+  }
+
 
   storage_image_reference {
     publisher = var.storage_image_attributes.vm-publisher
@@ -77,6 +62,10 @@ resource "azurerm_virtual_machine" "WINDOWS-VM" {
     disk_size_gb  = var.os_disk_attributes.vm-disk-size
     create_option = "FromImage"
   }
+  boot_diagnostics {
+    enabled = true
+    storage_uri = var.storage_uri
+  }
 
 }
 
@@ -89,5 +78,30 @@ resource "azurerm_availability_set" "VM-ASET" {
   platform_update_domain_count = 5
 }
 
-
+resource "azurerm_virtual_machine_extension" "WINDOWS-EXTEND-ANTIVIRUS" {
+  name                       = "9079-extend-antivirus"
+  virtual_machine_id         = azurerm_virtual_machine.WINDOWS-VM.id
+  publisher                  = "Microsoft.Azure.Security"
+  type                       = "IaaSAntimalware"
+  type_handler_version       = "1.3"
+  auto_upgrade_minor_version = "true"
+  tags                       = var.std_tags
+  settings                   = <<SETTINGS
+{
+"AntimalwareEnabled": true,
+"RealtimeProtectionEnabled": "true",
+"ScheduledScanSettings": {
+"isEnabled": "true",
+"day": "1",
+"time": "120",
+"scanType": "Quick"
+},
+"Exclusions": {
+"Extensions": "",
+"Paths": "",
+"Processes": ""
+}
+}
+SETTINGS
+}
 

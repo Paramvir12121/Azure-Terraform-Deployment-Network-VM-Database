@@ -63,6 +63,16 @@ output "Windows-private-ip-address" {
   value = module.vmwindows.windows-private-ip-address
 }
 
+#loadbalancer
+output "Lb-Name" {
+  value = module.loadbalancer.lb-name
+}
 
+#database
+output "DB-server-name" {
+  value = module.database.db-server-name
+}
 
-
+output "Db-name" {
+  value = module.database.db-name
+}

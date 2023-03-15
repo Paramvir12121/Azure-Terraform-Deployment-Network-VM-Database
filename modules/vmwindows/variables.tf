@@ -67,7 +67,5 @@ variable "windows_avs" {
   default = "windows-avs"
 }
 
-# variable "nb_count" {
-#   type    = string
-#   default = "2"
-# }
+variable "storage_uri" {
+}

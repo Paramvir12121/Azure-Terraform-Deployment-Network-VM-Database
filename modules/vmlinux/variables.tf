@@ -71,3 +71,7 @@ variable "nb_count" {
   type    = string
   default = "2"
 }
+
+variable "storage_uri" {
+  type =string
+}

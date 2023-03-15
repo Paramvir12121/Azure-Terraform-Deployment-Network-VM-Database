@@ -9,3 +9,7 @@ output "Rsv_Name" {
 output "Sa_Name" {
   value = azurerm_storage_account.SA.name
 }
+
+output "Sa_endpoint" {
+  value = azurerm_storage_account.SA.primary_blob_endpoint
+}

@@ -5,11 +5,14 @@ output "linux-nic-name" {
 output "linux-hostname" {
   value = azurerm_virtual_machine.LINUX-VM[*].name
 }
-output "linux-vm-id0" {
-  value=azurerm_virtual_machine.LINUX-VM[0].id
+output "linux-vm-id" {
+  value = azurerm_virtual_machine.LINUX-VM[*].id
 }
-output "linux-vm-id1" {
-  value=azurerm_virtual_machine.LINUX-VM[1].id
+# output "linux-vm-id1" {
+#   value = azurerm_virtual_machine.LINUX-VM[1].id
+# }
+output "VM-aset-id" {
+  value = azurerm_availability_set.VM-ASET.id
 }
 
 #Output variable: Public IP address

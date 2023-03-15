@@ -2,7 +2,6 @@ variable "std_tags" {
   type = map(string)
 }
 
-
 variable "location" {
   type = string
 }
